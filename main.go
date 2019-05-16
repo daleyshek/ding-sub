@@ -68,7 +68,7 @@ func loadConf(initial bool) bool {
 		f, err = os.OpenFile(ConfigFileName, os.O_CREATE|os.O_RDWR, 0666)
 		if err == nil {
 			c.modTime = time.Now()
-			b, _ := json.Marshal(&c)
+			b, _ := json.MarshalIndent(&c, "", "    ")
 			f.Write(b)
 			f.Close()
 			log.Println("配置文件已生成，请填写配置参数")
@@ -126,7 +126,7 @@ func confWatch() bool {
 // subscribe 订阅
 func subscribe(sb Subscriber, wg *sync.WaitGroup) {
 	if c.Redis.Addr == "" || sb.RedisChannel == "" || sb.DingHookBotURL == "" {
-		log.Println("请先配置app.conf参数")
+		log.Println("请先配置" + ConfigFileName + "参数")
 		wg.Done()
 		return
 	}
