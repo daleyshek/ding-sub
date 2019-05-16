@@ -36,12 +36,32 @@
 
 配置并运行应用
 
-![图片](build/1.jpg)
+```bash
+$ ls
+ding-sub
+$ chmod +x ding-sub
+$ ./ding-sub
+2019/05/16 15:03:27 未在程序目录找到配置文件
+2019/05/16 15:03:27 配置文件已生成，请填写配置参数
+2019/05/16 15:03:27 请先配置app.json参数
+$ ls
+app.json ding-sub
+# 配置文件后运行
+$ ./ding-sub
+# 以nohup运行
+# nohup ./ding-sub >> log.txt &
+
+```
 
 Redis测试输入
 
-![图片](build/2.jpg)
+```bash
+$ redis-cli --raw
+127.0.0.1:6379> publish my-example 'hello'
+127.0.0.1:6379> publish my-example '测试通知'
+127.0.0.1:6379> publish my-example '😀'
+```
 
-结果
+钉钉群聊
 
-![图片](build/3.jpg)
+![图片](build/ding.jpg)
